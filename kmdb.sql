@@ -150,15 +150,13 @@ CREATE TABLE movies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT,
     year_released INTEGER,
-    MPAA_rating TEXT,
+    mpaa_rating TEXT,
     studio_id INTEGER
 );
-
 CREATE TABLE actors (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     actor_name TEXT
 );
-
 CREATE TABLE castings (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     movie_id INTEGER,
@@ -166,3 +164,43 @@ CREATE TABLE castings (
     movie_role TEXT
 );
 
+INSERT INTO studios (studio_name) 
+VALUES ("Warner Bros.");
+
+INSERT INTO movies (title, year_released, mpaa_rating, studio_id) 
+VALUES ("Batman Begins", 2005, "PG-13", 1),
+("The Dark Knight", 2008, "PG-13", 1),
+("The Dark Knight Rises", 2012, "PG-13",1);
+
+INSERT INTO actors (actor_name)
+VALUES ("Christian Bale"),
+("Michael Caine"),
+("Liam Neeson"),
+("Katie Holmes"),
+("Gary Oldman"),
+("Heath Ledger"),
+("Aaron Eckhart"),
+("Maggie Gyllenhaal"),
+("Tom Hardy"),
+("Joseph Gordon-Levitt"),
+("Anne Hathaway");
+
+INSERT INTO castings (movie_id, actor_id, movie_role)
+VALUES (1, 1, "Bruce Wayne"),
+(1, 3," Ra's Al Ghul"),
+(1, 4, "Rachel Dawes"),
+(1, 5, "Commissioner Gordon"),
+(2, 1, "Bruce Wayne"),
+(2, 6, "Joker"),
+(2, 7, "Harvey Dent"),
+(2, 2, "Alfred"),
+(2, 8, "Rachel Dawes" ),
+(3, 1, "Bruce Wayne"),
+(3, 5, "Commissioner Gordon"),
+(3, 9, "Bane"),
+(3, 10, "John Blake"),
+(3, 11, "Selina Kyle");
+
+SELECT title, year_released, mpaa_rating, studio_name
+FROM movies 
+INNER JOIN studios ON studios.id = movies.studio_id
