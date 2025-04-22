@@ -121,22 +121,15 @@
 -- TODO!
 
 -- Prints a header for the movies output
-.print "Movies"
-.print "======"
-.print ""
 
 -- The SQL statement for the movies output
 -- TODO!
 
 -- Prints a header for the cast output
-.print ""
-.print "Top Cast"
-.print "========"
-.print ""
-
 
 -- The SQL statement for the cast output
 -- TODO!
+
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS castings;
 DROP TABLE IF EXISTS actors;
@@ -187,6 +180,7 @@ VALUES ("Christian Bale"),
 
 INSERT INTO castings (movie_id, actor_id, movie_role)
 VALUES (1, 1, "Bruce Wayne"),
+(1, 2, "Alfred"),
 (1, 3," Ra's Al Ghul"),
 (1, 4, "Rachel Dawes"),
 (1, 5, "Commissioner Gordon"),
@@ -201,6 +195,23 @@ VALUES (1, 1, "Bruce Wayne"),
 (3, 10, "John Blake"),
 (3, 11, "Selina Kyle");
 
+.print "Movies"
+.print "======"
+.print ""
+
 SELECT title, year_released, mpaa_rating, studio_name
 FROM movies 
-INNER JOIN studios ON studios.id = movies.studio_id
+INNER JOIN studios ON studios.id = movies.studio_id;
+
+.print ""
+.print "Top Cast"
+.print "========"
+.print ""
+
+SELECT movies.title, actors.actor_name, movie_role
+FROM castings
+INNER JOIN movies ON movies.id = castings.movie_id
+INNER JOIN actors ON actors.id = castings.actor_id;
+
+
+
